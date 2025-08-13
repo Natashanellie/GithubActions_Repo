@@ -1,11 +1,9 @@
 name: Main workflow
 on: push
-env:
-  docker_username: ${{ github.actor }}
-  docker_username_lower: ${{ toLower(github.actor) }}
-  docker_password: ${{ secrets.GITHUB_TOKEN }}
+env: # Set the secret as an input
+  docker_username: ${{ github.actor }} 
+  docker_password: ${{ secrets.GITHUB_TOKEN }} #Nees to be set to be made available to the workflow
   GIT_COMMIT: ${{ github.sha }}
-
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -75,4 +73,4 @@ jobs:
         name: code
         path: .
     - name: Execute performance test
-      run: bash ci/performance-test.sh          
+      run: bash ci/performance-test.sh 
