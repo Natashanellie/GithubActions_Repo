@@ -1,10 +1,11 @@
 name: Main workflow
 on: push
-env: # Set the secret as an input
+env:
   docker_username: ${{ github.actor }}
-  docker_username_lower: ${{ github.actor && github.actor != '' && github.actor | toLowerCase }}
+  docker_username_lower: ${{ toLower(github.actor) }}
   docker_password: ${{ secrets.GITHUB_TOKEN }}
   GIT_COMMIT: ${{ github.sha }}
+
 jobs:
   Build:
     runs-on: ubuntu-latest
